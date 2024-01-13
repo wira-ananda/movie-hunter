@@ -1,11 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { usePopularMovies } from "@/api/fetch";
+import { usePopularMovies, useTopRatedMovies } from "@/api/fetchMovies";
 
 export default function Home() {
-  const { getPopularMovie } = usePopularMovies();
-  console.log(getPopularMovie);
+  const { getPopularMovies } = usePopularMovies();
+  const { getTopRatedMovies } = useTopRatedMovies();
+  console.log(getPopularMovies);
+  console.log(getTopRatedMovies);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
