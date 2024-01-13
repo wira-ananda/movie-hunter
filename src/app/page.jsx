@@ -2,12 +2,10 @@
 
 import Image from "next/image";
 import { usePopularMovies } from "@/api/fetch";
-import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    usePopularMovies();
-  }, []);
+  const { getPopularMovie } = usePopularMovies();
+  console.log(getPopularMovie);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
