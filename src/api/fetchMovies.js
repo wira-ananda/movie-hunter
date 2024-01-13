@@ -45,3 +45,24 @@ export const useTopRatedMovies = () => {
     getTopRatedMovies: data,
   };
 };
+
+export const useNowPlayingMovies = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axiosInstance.get(`/movie/now_playing${api_key}`);
+        setData(res.data.results);
+      } catch (error) {
+        console.error(gagal, error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return {
+    getNowPlayingMovies: data,
+  };
+};
