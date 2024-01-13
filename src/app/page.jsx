@@ -1,15 +1,12 @@
 "use client";
-const env = require("dotenv");
-env.config();
 
 import Image from "next/image";
-import { getPopularMovies } from "@/api/fetch";
+import { usePopularMovies } from "@/api/fetch";
 import { useEffect } from "react";
-import { axiosInstance, apiKey } from "@/lib/axios";
 
 export default function Home() {
   useEffect(() => {
-    getPopularMovies();
+    usePopularMovies();
   }, []);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
