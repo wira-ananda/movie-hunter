@@ -4,7 +4,7 @@ env.config();
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: process.env.MY_BASEURL,
+  baseURL: process.env.NEXT_PUBLIC_BASEURL,
 });
 
-export const apiKey = process.env.MY_APIKEY;
+export const apiKey = process.env.NEXT_PUBLIC_APIKEY;
