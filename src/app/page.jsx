@@ -27,7 +27,7 @@ export default function Home() {
 function FilmPage() {
   return (
     <div>
-      <div></div>
+      <div>WIRA</div>
     </div>
   );
 }
