@@ -89,3 +89,26 @@ export const useCreditsMovie = (movieId) => {
     getCreditsMovie: data,
   };
 };
+
+export const useImagesMovie = (movieId) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axiosInstance.get(
+          `/movie/${movieId}/images${api_key}`
+        );
+        setData(res.data.logos);
+      } catch (error) {
+        console.error(gagal, error);
+      }
+    };
+
+    fetchData();
+  }, [movieId]);
+
+  return {
+    getImagesMovie: data,
+  };
+};
