@@ -76,7 +76,7 @@ export const useCreditsMovie = (movieId) => {
         const res = await axiosInstance.get(
           `/movie/${movieId}/credits${api_key}`
         );
-        setData(res.data);
+        setData(res.data.cast);
       } catch (error) {
         console.error(gagal, error);
       }
