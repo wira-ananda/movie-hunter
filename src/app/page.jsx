@@ -4,7 +4,7 @@ import {
   usePopularMovies,
   useTopRatedMovies,
   useNowPlayingMovies,
-  useCreditsMovies,
+  useCreditsMovie,
 } from "@/api/fetchMovies";
 import Image from "next/image";
 import { imgUrl } from "@/lib/axios";
@@ -25,8 +25,8 @@ function FilmPage() {
   const topMovie = getPopularMovies[0];
   console.log(topMovie);
 
-  const { getCreditsMovies } = useCreditsMovies(topMovie?.id);
-  console.log(getCreditsMovies);
+  const { getCreditsMovie } = useCreditsMovie(topMovie?.id);
+  console.log(getCreditsMovie);
 
   const backdrop = `${imgUrl}${topMovie?.backdrop_path}`;
 

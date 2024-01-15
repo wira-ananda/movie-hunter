@@ -67,14 +67,14 @@ export const useNowPlayingMovies = () => {
   };
 };
 
-export const useCreditsMovies = (movie_id) => {
-  const [data, setData] = useState();
+export const useCreditsMovie = (movieId) => {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axiosInstance.get(
-          `/movie/${movie_id}/credits${api_key}`
+          `/movie/${movieId}/credits${api_key}`
         );
         setData(res.data);
       } catch (error) {
@@ -86,6 +86,6 @@ export const useCreditsMovies = (movie_id) => {
   }, []);
 
   return {
-    getCreditsMovies: data,
+    getCreditsMovie: data,
   };
 };
