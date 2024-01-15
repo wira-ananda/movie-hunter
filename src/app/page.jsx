@@ -1,23 +1,17 @@
 "use client";
 
-import Image from "next/image";
 import {
   usePopularMovies,
   useTopRatedMovies,
   useNowPlayingMovies,
 } from "@/api/fetchMovies";
+import Image from "next/image";
+import { imgUrl } from "@/lib/axios";
 
 export default function Home() {
-  const { getPopularMovies } = usePopularMovies();
-  const { getTopRatedMovies } = useTopRatedMovies();
-  const { getNowPlayingMovies } = useNowPlayingMovies();
-  console.log(getPopularMovies);
-  console.log(getTopRatedMovies);
-  console.log(getNowPlayingMovies);
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
+    <main>
+      <div>
         <FilmPage />
       </div>
     </main>
@@ -25,9 +19,14 @@ export default function Home() {
 }
 
 function FilmPage() {
+  const { getPopularMovies } = usePopularMovies();
+
+  const topMovie = getPopularMovies[0];
+
   return (
     <div>
-      <div>WIRA</div>
+      <h1 className="">{topMovie?.original_title}</h1>
+      <img src={`${imgUrl}${topMovie?.backdrop_path}`} />
     </div>
   );
 }
