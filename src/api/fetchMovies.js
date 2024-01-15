@@ -83,7 +83,7 @@ export const useCreditsMovie = (movieId) => {
     };
 
     fetchData();
-  }, []);
+  }, [movieId]);
 
   return {
     getCreditsMovie: data,
