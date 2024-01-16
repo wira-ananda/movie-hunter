@@ -99,7 +99,7 @@ export const useImagesMovie = (movieId) => {
         const res = await axiosInstance.get(
           `/movie/${movieId}/images${api_key}`
         );
-        setData(res.data.logos);
+        setData(res.data);
       } catch (error) {
         console.error(gagal, error);
       }
