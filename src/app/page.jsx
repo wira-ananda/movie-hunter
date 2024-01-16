@@ -9,6 +9,7 @@ import {
 } from "@/api/fetchMovies";
 import Image from "next/image";
 import { imgUrl } from "@/lib/axios";
+import Thumbnail from "@/component/Thumbnail";
 
 export default function Home() {
   return (
@@ -19,18 +20,6 @@ export default function Home() {
         {/* <FilmPage /> */}
       </div>
     </main>
-  );
-}
-function Card() {
-  const { getPopularMovies } = usePopularMovies();
-  const topMovie = getPopularMovies[0];
-  const poster = `${imgUrl}${topMovie?.poster_path}`;
-  return (
-    <div className="flex space-x-[1rem] overflow-x-auto">
-      {getPopularMovies?.map((credit) => (
-        <img src={`${imgUrl}${credit.poster_path}`} className="w-[12rem]" />
-      ))}
-    </div>
   );
 }
 
@@ -44,20 +33,25 @@ function Test() {
   return (
     <div
       className="w-full h-full bg-cover bg-center"
-      style={{ backgroundImage: `url(${backdrop})` }}
+      style={{
+        backgroundImage: `url(${backdrop})`,
+      }}
     >
       <div className="w-[90%] h-full flex mx-auto ">
         <div className="z-40 space-y-[1rem] my-auto">
-          <div className="font-semibold text-[5rem] flex space-x-[1.5rem]">
-            <h1>{topMovie?.original_title} - </h1>
-            <h1 className="">{topMovie?.vote_average.toFixed(1)}</h1>
+          <div>
+            <h1 className="font-semibold text-[5rem] flex space-x-[1.5rem]">
+              {topMovie?.original_title}
+            </h1>
+            <h1>{topMovie?.overview}</h1>
+            {/* <h1 className="">{topMovie?.vote_average.toFixed(1)}</h1> */}
           </div>
           <button className="px-[1.5rem] py-[.2rem] bg-black rounded-md text-[1rem]">
             Play
           </button>
           <div>
             <h1>TOP MOVIES</h1>
-            <Card />
+            <Thumbnail />
           </div>
         </div>
       </div>
