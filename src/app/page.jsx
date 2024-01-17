@@ -49,6 +49,7 @@ function Test() {
           <button className="px-[1.5rem] py-[.2rem] bg-black rounded-md text-[1rem]">
             Play
           </button>
+          <button></button>
           <div>
             <h1>TOP MOVIES</h1>
             <Thumbnail />
