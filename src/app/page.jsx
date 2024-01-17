@@ -1,15 +1,14 @@
 "use client";
 
 import {
-  usePopularMovies,
-  useTopRatedMovies,
-  useNowPlayingMovies,
   useCreditsMovie,
   useImagesMovie,
-} from "@/api/fetchMovies";
-import Image from "next/image";
+  useMoviesData,
+} from "@/api/useMoviesData";
+import { useSeriesData } from "@/api/useSeriesData";
 import { imgUrl } from "@/lib/axios";
 import Thumbnail from "@/component/Thumbnail";
+import { testFetch } from "@/api/fetch";
 
 export default function Home() {
   return (
@@ -24,11 +23,12 @@ export default function Home() {
 }
 
 function Test() {
-  const { getPopularMovies } = usePopularMovies();
-  const topMovie = getPopularMovies[0];
+  const { popularMovies, topRatedMovies } = useMoviesData();
+  const { popularSeries, topRatedSeries } = useSeriesData();
+  const topMovie = popularMovies[0];
   const backdrop = `${imgUrl}${topMovie?.backdrop_path}`;
-
-  console.log(getPopularMovies);
+  console.log(topRatedMovies);
+  console.log(topRatedSeries);
 
   return (
     <div
@@ -49,10 +49,9 @@ function Test() {
           <button className="px-[1.5rem] py-[.2rem] bg-black rounded-md text-[1rem]">
             Play
           </button>
-          <button></button>
           <div>
-            <h1>TOP MOVIES</h1>
-            <Thumbnail />
+            <Thumbnail title="Top Movies" data={popularMovies} />
+            <Thumbnail title="Top Rated Movies" data={topRatedMovies} />
           </div>
         </div>
       </div>
@@ -60,57 +59,58 @@ function Test() {
   );
 }
 
-function FilmPage() {
-  const { getPopularMovies } = usePopularMovies();
+// function FilmPage() {
+//   const { popularMovies, topRatedMovies } = useMoviesData();
+//   const topMovie = popularMovies[0];
 
-  const topMovie = getPopularMovies[0];
-  console.log(getPopularMovies);
+//   console.log(topRatedMovies);
+//   console.log(topRatedSeries);
 
-  const { getCreditsMovie } = useCreditsMovie(topMovie?.id);
-  const { getImagesMovie } = useImagesMovie(topMovie?.id);
-  console.log(getImagesMovie);
+//   const { getCreditsMovie } = useCreditsMovie(topMovie?.id);
+//   const { getImagesMovie } = useImagesMovie(topMovie?.id);
+//   console.log(getImagesMovie);
 
-  const backdrop = `${imgUrl}${topMovie?.backdrop_path}`;
+//   const backdrop = `${imgUrl}${topMovie?.backdrop_path}`;
 
-  const castMovie = getCreditsMovie?.slice(0, 5).map((credit) => (
-    <div key={credit.id}>
-      <p>{credit.name}</p>
-    </div>
-  ));
+//   const castMovie = getCreditsMovie?.slice(0, 5).map((credit) => (
+//     <div key={credit.id}>
+//       <p>{credit.name}</p>
+//     </div>
+//   ));
 
-  return (
-    <div
-      className="w-full h-full bg-cover bg-center"
-      style={{ backgroundImage: `url(${backdrop})` }}
-    >
-      <div className="w-[90%] h-full flex mx-auto ">
-        <div className="z-40 w-[60%] space-y-[1rem] my-auto">
-          <div className="flex gap-[1rem]">
-            <img
-              className="w-[15rem] rounded-lg"
-              src={`${imgUrl}${topMovie?.poster_path}`}
-              alt=""
-            />
-            <div className="">
-              <h1 className="font-semibold text-[5rem]">
-                {topMovie?.original_title}
-              </h1>
-              <p>{topMovie?.overview}</p>
-            </div>
-          </div>
-          <div className="">
-            <h1 className="font-semibold">Cast </h1>
-            <div className="flex space-x-[1rem]">{castMovie}</div>
-          </div>
-          <div className="">
-            <h1 className="font-semibold">Release Date </h1>
-            <div className="flex space-x-[1rem]">{topMovie?.release_date}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div
+//       className="w-full h-full bg-cover bg-center"
+//       style={{ backgroundImage: `url(${backdrop})` }}
+//     >
+//       <div className="w-[90%] h-full flex mx-auto ">
+//         <div className="z-40 w-[60%] space-y-[1rem] my-auto">
+//           <div className="flex gap-[1rem]">
+//             <img
+//               className="w-[15rem] rounded-lg"
+//               src={`${imgUrl}${topMovie?.poster_path}`}
+//               alt=""
+//             />
+//             <div className="">
+//               <h1 className="font-semibold text-[5rem]">
+//                 {topMovie?.original_title}
+//               </h1>
+//               <p>{topMovie?.overview}</p>
+//             </div>
+//           </div>
+//           <div className="">
+//             <h1 className="font-semibold">Cast </h1>
+//             <div className="flex space-x-[1rem]">{castMovie}</div>
+//           </div>
+//           <div className="">
+//             <h1 className="font-semibold">Release Date </h1>
+//             <div className="flex space-x-[1rem]">{topMovie?.release_date}</div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 function Header() {
   return (
