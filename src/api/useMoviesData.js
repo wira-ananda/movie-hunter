@@ -1,31 +1,47 @@
 import { useEffect, useState } from "react";
-import { fetchMovie } from "./fetch";
+import { fetchMovies, fetchMovieDetails } from "./fetch";
 
 const errMsg = "Gagal fetching:";
 
-export const useMoviesData = (movieId) => {
+export const useMoviesData = () => {
   const [data, setData] = useState({
     popularMovies: [],
     topRatedMovies: [],
     nowPlayingMovies: [],
-    creditsMovie: [],
   });
-
-  console.log(movieId);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const {
-          popularMovies,
-          topRatedMovies,
-          nowPlayingMovies,
-          creditsMovie,
-        } = await fetchMovie(movieId);
+        const { popularMovies, topRatedMovies, nowPlayingMovies } =
+          await fetchMovies();
+
         setData({
           popularMovies,
           topRatedMovies,
           nowPlayingMovies,
+        });
+      } catch (error) {
+        console.error(errMsg, error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return data;
+};
+
+export const useMovieDetailsData = (movieId) => {
+  const [data, setData] = useState({
+    creditsMovie: [],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { creditsMovie } = await fetchMovieDetails(movieId);
+        setData({
           creditsMovie,
         });
       } catch (error) {
