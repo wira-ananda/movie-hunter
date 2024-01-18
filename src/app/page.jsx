@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  useCreditsMovie,
-  useImagesMovie,
-  useMoviesData,
-} from "@/api/useMoviesData";
+import { useMoviesData } from "@/api/useMoviesData";
 import { useSeriesData } from "@/api/useSeriesData";
 import { imgUrl } from "@/lib/axios";
 import Thumbnail from "@/component/Thumbnail";
@@ -23,13 +19,21 @@ export default function Home() {
 }
 
 function Test() {
-  const { popularMovies, topRatedMovies } = useMoviesData();
+  const { popularMovies, topRatedMovies, creditsMovie } = useMoviesData();
   const { popularSeries, topRatedSeries } = useSeriesData();
   const topMovie = popularMovies[0];
   const backdrop = `${imgUrl}${topMovie?.backdrop_path}`;
+
+  console.log(topMovie?.id);
+  const { creditsMovie: movieCredits } = useMoviesData(topMovie?.id);
   console.log(topRatedMovies);
   console.log(topRatedSeries);
 
+  const castMovie = movieCredits?.slice(0, 5).map((credit) => (
+    <div key={credit.id}>
+      <p>{credit.name}</p>
+    </div>
+  ));
   return (
     <div
       className="w-full h-full bg-cover bg-center"
@@ -44,6 +48,7 @@ function Test() {
               {topMovie?.original_title}
             </h1>
             <h1>{topMovie?.overview}</h1>
+            {castMovie}
             {/* <h1 className="">{topMovie?.vote_average.toFixed(1)}</h1> */}
           </div>
           <button className="px-[1.5rem] py-[.2rem] bg-black rounded-md text-[1rem]">

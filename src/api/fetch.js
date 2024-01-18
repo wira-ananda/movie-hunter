@@ -1,27 +1,38 @@
 import { axiosInstance } from "@/lib/axios";
 import { axiosFetchMovies, axiosFetchSeries } from "@/lib/axiosFetch";
 
-export const fetchMovie = async () => {
-  const { req } = axiosFetchMovies();
-  const [popularMovies, topRatedMovies, nowPlayingMovies] = await Promise.all([
-    axiosInstance.get(req.fetchPopularMovies).then((res) => res.data),
-    axiosInstance.get(req.fetchTopRatedMovies).then((res) => res.data),
-    axiosInstance.get(req.fetchNowPlayingMovies).then((res) => res.data),
-  ]);
+export const fetchMovie = async (movieId) => {
+  const {
+    fetchPopularMovies,
+    fetchTopRatedMovies,
+    fetchNowPlayingMovies,
+    fetchCreditsMovie,
+    fetchImagesMovie,
+  } = axiosFetchMovies();
+
+  const [popularMovies, topRatedMovies, nowPlayingMovies, creditsMovie] =
+    await Promise.all([
+      axiosInstance.get(fetchPopularMovies).then((res) => res.data),
+      axiosInstance.get(fetchTopRatedMovies).then((res) => res.data),
+      axiosInstance.get(fetchNowPlayingMovies).then((res) => res.data),
+      axiosInstance.get(fetchCreditsMovie(movieId)).then((res) => res.data),
+    ]);
 
   return {
     popularMovies: popularMovies.results,
     topRatedMovies: topRatedMovies.results,
     nowPlayingMovies: nowPlayingMovies.results,
+    creditsMovie: creditsMovie.results,
   };
 };
 
 export const fetchSeries = async () => {
-  const { req } = axiosFetchSeries();
+  const { fetchPopularSeries, fetchTopRatedSeries, fetchNowPlayingSeries } =
+    axiosFetchSeries();
   const [popularSeries, topRatedSeries, nowPlayingSeries] = await Promise.all([
-    axiosInstance.get(req.fetchPopularSeries).then((res) => res.data),
-    axiosInstance.get(req.fetchTopRatedSeries).then((res) => res.data),
-    axiosInstance.get(req.fetchNowPlayingSeries).then((res) => res.data),
+    axiosInstance.get(fetchPopularSeries).then((res) => res.data),
+    axiosInstance.get(fetchTopRatedSeries).then((res) => res.data),
+    axiosInstance.get(fetchNowPlayingSeries).then((res) => res.data),
   ]);
 
   return {

@@ -3,22 +3,30 @@ import { fetchMovie } from "./fetch";
 
 const errMsg = "Gagal fetching:";
 
-export const useMoviesData = () => {
+export const useMoviesData = (movieId) => {
   const [data, setData] = useState({
     popularMovies: [],
-    useTopRatedMovies: [],
+    topRatedMovies: [],
     nowPlayingMovies: [],
+    creditsMovie: [],
   });
+
+  console.log(movieId);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { popularMovies, topRatedMovies, nowPlayingMovies } =
-          await fetchMovie();
+        const {
+          popularMovies,
+          topRatedMovies,
+          nowPlayingMovies,
+          creditsMovie,
+        } = await fetchMovie(movieId);
         setData({
-          popularMovies: popularMovies,
-          topRatedMovies: topRatedMovies,
-          nowPlayingMovies: nowPlayingMovies,
+          popularMovies,
+          topRatedMovies,
+          nowPlayingMovies,
+          creditsMovie,
         });
       } catch (error) {
         console.error(errMsg, error.message);
@@ -26,35 +34,35 @@ export const useMoviesData = () => {
     };
 
     fetchData();
-  }, []);
+  }, [movieId]);
 
   return data;
 };
 
-export const useMovieData = () => {
-  const [data, setData] = useState({
-    creditMovie: [],
-    imagesMovie: [],
-  });
+// export const useMovieData = () => {
+//   const [data, setData] = useState({
+//     creditMovie: [],
+//     imagesMovie: [],
+//   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { creditMovie, imagesMovie } = await fetchMovie(movieId);
-        setData({
-          creditMovie: creditMovie,
-          imagesMovie: imagesMovie,
-        });
-      } catch (error) {
-        console.error(errMsg, error.message);
-      }
-    };
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const { creditMovie, imagesMovie } = await fetchMovie(movieId);
+//         setData({
+//           creditMovie: creditMovie,
+//           imagesMovie: imagesMovie,
+//         });
+//       } catch (error) {
+//         console.error(errMsg, error.message);
+//       }
+//     };
 
-    fetchData();
-  }, []);
+//     fetchData();
+//   }, []);
 
-  return data;
-};
+//   return data;
+// };
 
 // export const useCreditsMovie = (movieId) => {
 //   const [data, setData] = useState([]);
