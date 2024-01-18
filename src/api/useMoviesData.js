@@ -38,18 +38,20 @@ export const useMovieDetailsData = (movieId) => {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { creditsMovie } = await fetchMovieDetails(movieId);
-        setData({
-          creditsMovie,
-        });
-      } catch (error) {
-        console.error(errMsg, error.message);
-      }
-    };
+    if (movieId) {
+      const fetchData = async () => {
+        try {
+          const { creditsMovie } = await fetchMovieDetails(movieId);
+          setData({
+            creditsMovie,
+          });
+        } catch (error) {
+          console.error(errMsg, error.message);
+        }
+      };
 
-    fetchData();
+      fetchData();
+    }
   }, [movieId]);
 
   return data;

@@ -23,8 +23,6 @@ function Test() {
   const topMovie = popularMovies[0];
   const backdrop = `${imgUrl}${topMovie?.backdrop_path}`;
 
-  console.log(topMovie?.id);
-
   const { creditsMovie } = useMovieDetailsData(topMovie?.id);
 
   console.log(creditsMovie);
