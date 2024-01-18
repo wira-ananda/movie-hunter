@@ -1,14 +1,17 @@
 import { axiosInstance } from "@/lib/axios";
-import { axiosFetchMovies, axiosFetchSeries } from "@/lib/axiosFetch";
+import { axiosMoviesEndpoint, axiosSeriesEndpoint } from "@/lib/axiosEndpoint";
 
 export const fetchMovies = async () => {
-  const { fetchPopularMovies, fetchTopRatedMovies, fetchNowPlayingMovies } =
-    axiosFetchMovies();
+  const {
+    endpointPopularMovies,
+    endpointTopRatedMovies,
+    endpointNowPlayingMovies,
+  } = axiosMoviesEndpoint();
 
   const [popularMovies, topRatedMovies, nowPlayingMovies] = await Promise.all([
-    axiosInstance.get(fetchPopularMovies).then((res) => res.data),
-    axiosInstance.get(fetchTopRatedMovies).then((res) => res.data),
-    axiosInstance.get(fetchNowPlayingMovies).then((res) => res.data),
+    axiosInstance.get(endpointPopularMovies).then((res) => res.data),
+    axiosInstance.get(endpointTopRatedMovies).then((res) => res.data),
+    axiosInstance.get(endpointNowPlayingMovies).then((res) => res.data),
   ]);
 
   return {
@@ -19,10 +22,10 @@ export const fetchMovies = async () => {
 };
 
 export const fetchMovieDetails = async (movieId) => {
-  const { fetchCreditsMovie, fetchImagesMovie } = axiosFetchMovies();
+  const { endpointCreditsMovie, endpointImagesMovie } = axiosMoviesEndpoint();
 
   const [creditsMovie] = await Promise.all([
-    axiosInstance.get(fetchCreditsMovie(movieId)).then((res) => res.data),
+    axiosInstance.get(endpointCreditsMovie(movieId)).then((res) => res.data),
   ]);
 
   return {
@@ -31,12 +34,15 @@ export const fetchMovieDetails = async (movieId) => {
 };
 
 export const fetchSeries = async () => {
-  const { fetchPopularSeries, fetchTopRatedSeries, fetchNowPlayingSeries } =
-    axiosFetchSeries();
+  const {
+    endpointPopularSeries,
+    endpointTopRatedSeries,
+    endpointNowPlayingSeries,
+  } = axiosSeriesEndpoint();
   const [popularSeries, topRatedSeries, nowPlayingSeries] = await Promise.all([
-    axiosInstance.get(fetchPopularSeries).then((res) => res.data),
-    axiosInstance.get(fetchTopRatedSeries).then((res) => res.data),
-    axiosInstance.get(fetchNowPlayingSeries).then((res) => res.data),
+    axiosInstance.get(endpointPopularSeries).then((res) => res.data),
+    axiosInstance.get(endpointTopRatedSeries).then((res) => res.data),
+    axiosInstance.get(endpointNowPlayingSeries).then((res) => res.data),
   ]);
 
   return {
