@@ -16,9 +16,9 @@ export const useSeriesData = () => {
         const { popularSeries, topRatedSeries, nowPlayingSeries } =
           await fetchSeries();
         setData({
-          popularSeries: popularSeries || [],
-          topRatedSeries: topRatedSeries || [],
-          nowPlayingSeries: nowPlayingSeries || [],
+          popularSeries,
+          topRatedSeries,
+          nowPlayingSeries,
         });
       } catch (error) {
         console.error(errMsg, error.message);
