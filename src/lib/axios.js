@@ -10,3 +10,5 @@ export const axiosInstance = axios.create({
 export const apiKey = process.env.NEXT_PUBLIC_APIKEY;
 
 export const imgUrl = process.env.NEXT_PUBLIC_IMGURL;
+
+export const errMsg = "Fetching Gagal: ";

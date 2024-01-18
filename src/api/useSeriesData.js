@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchSeries } from "./fetch";
-
-const errMsg = "Gagal fetching:";
+import { errMsg } from "@/lib/axios";
 
 export const useSeriesData = () => {
   const [data, setData] = useState({
