@@ -1,7 +1,7 @@
 import { axiosInstance } from "@/lib/axios";
 import { endpointMovies, endpointSeries } from "@/lib/endpoint";
 
-const execute = (endpoint) =>
+const executeEndpoint = (endpoint) =>
   axiosInstance.get(endpoint).then((res) => res.data);
 
 export const fetchMovies = async (movieId = null) => {
@@ -29,7 +29,7 @@ export const fetchMovies = async (movieId = null) => {
         endpointPopularMovies,
         endpointTopRatedMovies,
         endpointNowPlayingMovies,
-      ].map(execute)
+      ].map(executeEndpoint)
     );
 
     return {
@@ -64,7 +64,7 @@ export const fetchSeries = async (seriesId = null) => {
         endpointPopularSeries,
         endpointTopRatedSeries,
         endpointNowPlayingSeries,
-      ].map(execute)
+      ].map(executeEndpoint)
     );
 
     return {
