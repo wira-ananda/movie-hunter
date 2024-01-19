@@ -6,7 +6,7 @@ const executeEndpoint = (endpoint) =>
 
 export const fetchMovies = async (movieId = null) => {
   if (movieId) {
-    const { endpointCreditsMovie, endpointImagesMovie } = endpointMovies();
+    const { endpointCreditsMovie } = endpointMovies();
 
     const [creditsMovie] = await Promise.all(
       [endpointCreditsMovie].map((endpoint) =>
