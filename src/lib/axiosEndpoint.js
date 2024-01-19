@@ -1,5 +1,6 @@
 const env = require("dotenv");
 env.config();
+
 import { apiKey } from "@/lib/axios";
 
 export const axiosMoviesEndpoint = () => {
