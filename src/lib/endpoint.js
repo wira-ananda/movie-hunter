@@ -3,7 +3,7 @@ env.config();
 
 import { apiKey } from "@/lib/axios";
 
-export const axiosMoviesEndpoint = () => {
+export const endpointMovies = () => {
   return {
     endpointPopularMovies: `/movie/popular${apiKey}`,
     endpointTopRatedMovies: `/movie/top_rated${apiKey}`,
@@ -13,7 +13,7 @@ export const axiosMoviesEndpoint = () => {
   };
 };
 
-export const axiosSeriesEndpoint = () => {
+export const endpointSeries = () => {
   return {
     endpointPopularSeries: `/tv/popular${apiKey}`,
     endpointTopRatedSeries: `/tv/top_rated${apiKey}`,

@@ -1,12 +1,12 @@
 import { axiosInstance } from "@/lib/axios";
-import { axiosMoviesEndpoint, axiosSeriesEndpoint } from "@/lib/axiosEndpoint";
+import { endpointMovies, endpointSeries } from "@/lib/endpoint";
 
 export const fetchMovies = async () => {
   const {
     endpointPopularMovies,
     endpointTopRatedMovies,
     endpointNowPlayingMovies,
-  } = axiosMoviesEndpoint();
+  } = endpointMovies();
 
   const [popularMovies, topRatedMovies, nowPlayingMovies] = await Promise.all(
     [
@@ -24,7 +24,7 @@ export const fetchMovies = async () => {
 };
 
 export const fetchMovieDetails = async (movieId) => {
-  const { endpointCreditsMovie, endpointImagesMovie } = axiosMoviesEndpoint();
+  const { endpointCreditsMovie, endpointImagesMovie } = endpointMovies();
 
   const [creditsMovie] = await Promise.all(
     [endpointCreditsMovie].map((endpoint) =>
@@ -42,7 +42,7 @@ export const fetchSeries = async () => {
     endpointPopularSeries,
     endpointTopRatedSeries,
     endpointNowPlayingSeries,
-  } = axiosSeriesEndpoint();
+  } = endpointSeries();
   const [popularSeries, topRatedSeries, nowPlayingSeries] = await Promise.all(
     [
       endpointPopularSeries,
