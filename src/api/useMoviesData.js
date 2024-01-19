@@ -31,16 +31,16 @@ export const useMoviesData = () => {
   return data;
 };
 
-export const useMovieDetailsData = (movieId) => {
+export const useMovieDetailsData = (id) => {
   const [data, setData] = useState({
     creditsMovie: [],
   });
 
   useEffect(() => {
-    if (movieId) {
+    if (id) {
       const fetchData = async () => {
         try {
-          const { creditsMovie } = await fetchMovies(movieId);
+          const { creditsMovie } = await fetchMovies(id);
           setData({
             creditsMovie,
           });
@@ -51,7 +51,7 @@ export const useMovieDetailsData = (movieId) => {
 
       fetchData();
     }
-  }, [movieId]);
+  }, [id]);
 
   return data;
 };

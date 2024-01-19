@@ -1,21 +1,28 @@
 import { axiosInstance } from "@/lib/axios";
 import { endpointMovies, endpointSeries } from "@/lib/endpoint";
 
-const executeEndpoint = (endpoint) =>
-  axiosInstance.get(endpoint).then((res) => res.data);
+const executeMultipleResources = async (endpoint) => {
+  const result = await axiosInstance.get(endpoint).then((res) => res.data);
+  return result.results;
+};
 
-export const fetchMovies = async (movieId = null) => {
-  if (movieId) {
+const executeSingleResource = async (endpoint, id) => {
+  const result = await axiosInstance.get(endpoint(id)).then((res) => res.data);
+  return result.cast;
+};
+
+export const fetchMovies = async (id = null) => {
+  if (id) {
     const { endpointCreditsMovie } = endpointMovies();
 
     const [creditsMovie] = await Promise.all(
       [endpointCreditsMovie].map((endpoint) =>
-        axiosInstance.get(endpoint(movieId)).then((res) => res.data)
+        executeSingleResource(endpoint, id)
       )
     );
 
     return {
-      creditsMovie: creditsMovie.cast,
+      creditsMovie,
     };
   } else {
     const {
@@ -29,29 +36,29 @@ export const fetchMovies = async (movieId = null) => {
         endpointPopularMovies,
         endpointTopRatedMovies,
         endpointNowPlayingMovies,
-      ].map(executeEndpoint)
+      ].map(executeMultipleResources)
     );
 
     return {
-      popularMovies: popularMovies.results,
-      topRatedMovies: topRatedMovies.results,
-      nowPlayingMovies: nowPlayingMovies.results,
+      popularMovies,
+      topRatedMovies,
+      nowPlayingMovies,
     };
   }
 };
 
-export const fetchSeries = async (seriesId = null) => {
-  if (seriesId) {
+export const fetchSeries = async (id = null) => {
+  if (id) {
     const { endpointCreditsSeries } = endpointSeries();
 
     const [creditsSeries] = await Promise.all(
       [endpointCreditsSeries].map((endpoint) =>
-        axiosInstance.get(endpoint(seriesId)).then((res) => res.data)
+        executeSingleResource(endpoint, id)
       )
     );
 
     return {
-      creditsSeries: creditsSeries.cast,
+      creditsSeries,
     };
   } else {
     const {
@@ -64,13 +71,13 @@ export const fetchSeries = async (seriesId = null) => {
         endpointPopularSeries,
         endpointTopRatedSeries,
         endpointNowPlayingSeries,
-      ].map(executeEndpoint)
+      ].map(executeMultipleResources)
     );
 
     return {
-      popularSeries: popularSeries.results,
-      topRatedSeries: topRatedSeries.results,
-      nowPlayingSeries: nowPlayingSeries.results,
+      popularSeries,
+      topRatedSeries,
+      nowPlayingSeries,
     };
   }
 };
