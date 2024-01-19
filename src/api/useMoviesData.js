@@ -34,15 +34,17 @@ export const useMoviesData = () => {
 export const useMovieDetailsData = (id) => {
   const [data, setData] = useState({
     creditsMovie: [],
+    detailsMovie: [],
   });
 
   useEffect(() => {
     if (id) {
       const fetchData = async () => {
         try {
-          const { creditsMovie } = await fetchMovies(id);
+          const { creditsMovie, detailsMovie } = await fetchMovies(id);
           setData({
             creditsMovie,
+            detailsMovie,
           });
         } catch (error) {
           console.error(errMsg, error.message);

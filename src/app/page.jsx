@@ -23,11 +23,12 @@ function Test() {
   const topMovie = popularMovies[0];
   const backdrop = `${imgUrl}${topMovie?.backdrop_path}`;
 
-  const { creditsMovie } = useMovieDetailsData(topMovie?.id);
+  const { creditsMovie, detailsMovie } = useMovieDetailsData(topMovie?.id);
 
-  console.log(creditsMovie);
   console.log(topRatedMovies);
   console.log(topRatedSeries);
+  console.log(creditsMovie);
+  console.log(detailsMovie);
 
   return (
     <div
@@ -53,6 +54,17 @@ function Test() {
             <Thumbnail title="Top Rated Movies" data={topRatedMovies} />
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <div className="z-50 absolute w-full h-[5%] bg-black opacity-65 flex">
+      <div className="justify-between w-[90%] flex m-auto">
+        <div>Logo</div>
+        <div>Test</div>
       </div>
     </div>
   );
@@ -110,14 +122,3 @@ function Test() {
 //     </div>
 //   );
 // }
-
-function Header() {
-  return (
-    <div className="z-50 absolute w-full h-[5%] bg-black opacity-65 flex">
-      <div className="justify-between w-[90%] flex m-auto">
-        <div>Logo</div>
-        <div>Test</div>
-      </div>
-    </div>
-  );
-}

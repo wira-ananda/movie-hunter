@@ -5,7 +5,7 @@ const executeSingleResource = async (endpoint, id) => {
   const response = await axiosInstance
     .get(endpoint(id))
     .then((res) => res.data);
-  return response.cast;
+  return response;
 };
 
 const executeMultipleResources = async (endpoint) => {
@@ -15,16 +15,17 @@ const executeMultipleResources = async (endpoint) => {
 
 export const fetchMovies = async (id = null) => {
   if (id) {
-    const { endpointCreditsMovie } = endpointMovies();
+    const { endpointCreditsMovie, endpointDetailsMovie } = endpointMovies();
 
-    const [creditsMovie] = await Promise.all(
-      [endpointCreditsMovie].map((endpoint) =>
+    const [creditsMovie, detailsMovie] = await Promise.all(
+      [endpointCreditsMovie, endpointDetailsMovie].map((endpoint) =>
         executeSingleResource(endpoint, id)
       )
     );
 
     return {
-      creditsMovie,
+      creditsMovie: creditsMovie.cast,
+      detailsMovie,
     };
   } else {
     const {

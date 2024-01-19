@@ -9,6 +9,7 @@ export const endpointMovies = () => {
     endpointTopRatedMovies: `/movie/top_rated${apiKey}`,
     endpointNowPlayingMovies: `/movie/now_playing${apiKey}`,
     endpointCreditsMovie: (movieId) => `/movie/${movieId}/credits${apiKey}`,
+    endpointDetailsMovie: (movieId) => `/movie/${movieId}${apiKey}`,
     endpointImagesMovie: (movieId) => `/movie/${movieId}/images${apiKey}`,
   };
 };
