@@ -2,13 +2,15 @@ import { axiosInstance } from "@/lib/axios";
 import { endpointMovies, endpointSeries } from "@/lib/endpoint";
 
 const executeSingleResource = async (endpoint, id) => {
-  const result = await axiosInstance.get(endpoint(id)).then((res) => res.data);
-  return result.cast;
+  const response = await axiosInstance
+    .get(endpoint(id))
+    .then((res) => res.data);
+  return response.cast;
 };
 
 const executeMultipleResources = async (endpoint) => {
-  const result = await axiosInstance.get(endpoint).then((res) => res.data);
-  return result.results;
+  const response = await axiosInstance.get(endpoint).then((res) => res.data);
+  return response.results;
 };
 
 export const fetchMovies = async (id = null) => {
