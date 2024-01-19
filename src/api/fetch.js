@@ -8,11 +8,13 @@ export const fetchMovies = async () => {
     endpointNowPlayingMovies,
   } = axiosMoviesEndpoint();
 
-  const [popularMovies, topRatedMovies, nowPlayingMovies] = await Promise.all([
-    axiosInstance.get(endpointPopularMovies).then((res) => res.data),
-    axiosInstance.get(endpointTopRatedMovies).then((res) => res.data),
-    axiosInstance.get(endpointNowPlayingMovies).then((res) => res.data),
-  ]);
+  const [popularMovies, topRatedMovies, nowPlayingMovies] = await Promise.all(
+    [
+      endpointPopularMovies,
+      endpointTopRatedMovies,
+      endpointNowPlayingMovies,
+    ].map((endpoint) => axiosInstance.get(endpoint).then((res) => res.data))
+  );
 
   return {
     popularMovies: popularMovies.results,
@@ -24,9 +26,11 @@ export const fetchMovies = async () => {
 export const fetchMovieDetails = async (movieId) => {
   const { endpointCreditsMovie, endpointImagesMovie } = axiosMoviesEndpoint();
 
-  const [creditsMovie] = await Promise.all([
-    axiosInstance.get(endpointCreditsMovie(movieId)).then((res) => res.data),
-  ]);
+  const [creditsMovie] = await Promise.all(
+    [endpointCreditsMovie].map((endpoint) =>
+      axiosInstance.get(endpoint(movieId)).then((res) => res.data)
+    )
+  );
 
   return {
     creditsMovie: creditsMovie.cast,
@@ -39,11 +43,13 @@ export const fetchSeries = async () => {
     endpointTopRatedSeries,
     endpointNowPlayingSeries,
   } = axiosSeriesEndpoint();
-  const [popularSeries, topRatedSeries, nowPlayingSeries] = await Promise.all([
-    axiosInstance.get(endpointPopularSeries).then((res) => res.data),
-    axiosInstance.get(endpointTopRatedSeries).then((res) => res.data),
-    axiosInstance.get(endpointNowPlayingSeries).then((res) => res.data),
-  ]);
+  const [popularSeries, topRatedSeries, nowPlayingSeries] = await Promise.all(
+    [
+      endpointPopularSeries,
+      endpointTopRatedSeries,
+      endpointNowPlayingSeries,
+    ].map((endpoint) => axiosInstance.get(endpoint).then((res) => res.data))
+  );
 
   return {
     popularSeries: popularSeries.results,
