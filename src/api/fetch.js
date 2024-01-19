@@ -42,6 +42,17 @@ export const fetchMovies = async (movieId = null) => {
 
 export const fetchSeries = async (seriesId = null) => {
   if (seriesId) {
+    const { endpointCreditsSeries } = endpointSeries();
+
+    const [creditsSeries] = await Promise.all(
+      [endpointCreditsSeries].map((endpoint) =>
+        axiosInstance.get(endpoint(seriesId)).then((res) => res.data)
+      )
+    );
+
+    return {
+      creditsSeries: creditsSeries.cast,
+    };
   } else {
     const {
       endpointPopularSeries,

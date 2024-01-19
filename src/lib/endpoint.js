@@ -18,5 +18,6 @@ export const endpointSeries = () => {
     endpointPopularSeries: `/tv/popular${apiKey}`,
     endpointTopRatedSeries: `/tv/top_rated${apiKey}`,
     endpointNowPlayingSeries: `/tv/on_the_air${apiKey}`,
+    endpointCreditsSeries: (seriesId) => `/movie/${seriesId}/credits${apiKey}`,
   };
 };
