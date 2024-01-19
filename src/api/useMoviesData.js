@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchMovies, fetchMovieDetails } from "./fetch";
+import { fetchMovies } from "./fetch";
 import { errMsg } from "@/lib/axios";
 
 export const useMoviesData = () => {
@@ -40,7 +40,7 @@ export const useMovieDetailsData = (movieId) => {
     if (movieId) {
       const fetchData = async () => {
         try {
-          const { creditsMovie } = await fetchMovieDetails(movieId);
+          const { creditsMovie } = await fetchMovies(movieId);
           setData({
             creditsMovie,
           });
