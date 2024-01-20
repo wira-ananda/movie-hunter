@@ -4,7 +4,7 @@ import { useSeriesData } from "@/api/useSeriesData";
 import { imgUrl } from "@/lib/axios";
 import Thumbnail from "@/components/Thumbnail";
 
-export default function HomePage({ handleTest, setOnData }) {
+export default function HomePage() {
   const { popularMovies, topRatedMovies } = useMoviesData();
   const { popularSeries, topRatedSeries } = useSeriesData();
   const topMovie = popularMovies[0];
@@ -37,18 +37,8 @@ export default function HomePage({ handleTest, setOnData }) {
           </button>
           <div>
             <div>
-              <Thumbnail
-                title="Top Movies"
-                data={popularMovies}
-                setOnData={setOnData}
-                handleTest={handleTest}
-              />
-              <Thumbnail
-                title="Top Rated Movies"
-                data={topRatedMovies}
-                setOnData={setOnData}
-                handleTest={handleTest}
-              />
+              <Thumbnail title="Top Movies" data={popularMovies} />
+              <Thumbnail title="Top Rated Movies" data={topRatedMovies} />
             </div>
           </div>
         </div>
