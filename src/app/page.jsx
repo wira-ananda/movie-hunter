@@ -4,6 +4,7 @@ import { useMovieDetailsData, useMoviesData } from "@/api/useMoviesData";
 import { useSeriesData } from "@/api/useSeriesData";
 import { imgUrl } from "@/lib/axios";
 import Thumbnail from "@/component/Thumbnail";
+import { useState } from "react";
 
 export default function Home() {
   return (
@@ -30,6 +31,10 @@ function Test() {
   console.log(creditsMovie);
   console.log(detailsMovie);
 
+  const [onData, setOnData] = useState(false);
+
+  console.log(onData);
+
   return (
     <div
       className="w-full h-full bg-cover bg-center"
@@ -50,11 +55,33 @@ function Test() {
             Play
           </button>
           <div>
-            <Thumbnail title="Top Movies" data={popularMovies} />
-            <Thumbnail title="Top Rated Movies" data={topRatedMovies} />
+            {onData ? (
+              <TestAnu />
+            ) : (
+              <div>
+                <Thumbnail
+                  title="Top Movies"
+                  data={popularMovies}
+                  setOnData={setOnData}
+                />
+                <Thumbnail
+                  title="Top Rated Movies"
+                  data={topRatedMovies}
+                  setOnData={setOnData}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function TestAnu() {
+  return (
+    <div>
+      <div>wira</div>
     </div>
   );
 }
