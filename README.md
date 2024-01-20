@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## branch terbaru setelah sebelumnya menggunakan branch master, karena perubahan di routing yg menyebabkan harus membuat branch baru dan dijadikan branch utama
 ### untuk melihat commit dari awal, bisa liat di branch master
 =======
@@ -39,3 +40,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 >>>>>>> 646df248d543bfe3b4b26e8608c74bf6a5ba0bd2
+=======
+## branch terbaru setelah sebelumnya menggunakan branch master, karena perubahan di routing yg menyebabkan harus membuat branch baru dan dijadikan branch utama
+
+### untuk melihat commit dari awal, bisa liat di branch master
+>>>>>>> main
