@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-## branch terbaru setelah sebelumnya menggunakan branch master, karena perubahan di routing yg menyebabkan harus membuat branch baru dan dijadikan branch utama
-### untuk melihat commit dari awal, bisa liat di branch master
-=======
 This is a [Next.js](https://nextjs.org/) project tailwind with [`next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
