@@ -55,6 +55,7 @@ function Test({ handleTest, setOnData }) {
         backgroundImage: `url(${backdrop})`,
       }}
     >
+      Test
       <div className="w-[90%] h-full flex mx-auto ">
         <div className="z-40 space-y-[1rem] my-auto">
           <div>
