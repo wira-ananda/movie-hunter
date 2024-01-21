@@ -15,7 +15,11 @@ export default function MovieDetails() {
 
   return (
     <div>
-      {detailsMovie && id && (
+      {detailsMovie &&
+      detailsMovie.poster_path &&
+      detailsMovie.backdrop_path &&
+      creditsMovie &&
+      id ? (
         <div
           className="w-[100vw] h-[100vh] bg-cover bg-center"
           style={{
@@ -32,7 +36,7 @@ export default function MovieDetails() {
                 />
                 <div className="">
                   <h1 className="font-semibold text-[5rem]">
-                    {detailsMovie?.original_title}
+                    {detailsMovie?.title}
                   </h1>
                   <p>{detailsMovie?.overview}</p>
                 </div>
@@ -50,7 +54,7 @@ export default function MovieDetails() {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

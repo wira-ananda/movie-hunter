@@ -1,4 +1,5 @@
 import { imgUrl } from "@/lib/axios";
+import Link from "next/link";
 
 export default function Thumbnail({ data, title }) {
   return (
@@ -6,7 +7,7 @@ export default function Thumbnail({ data, title }) {
       <h1 className="font-bold text-[2rem]">{title}</h1>
       <div className="flex space-x-[.5rem] overflow-x-auto">
         {data?.map((thumbnail) => (
-          <a
+          <Link
             className="w-[9rem] sm:w-[10.5rem] md:w-[12rem]"
             href={`/movies/${thumbnail.id}`}
             key={thumbnail.id}
@@ -16,7 +17,7 @@ export default function Thumbnail({ data, title }) {
               src={`${imgUrl}${thumbnail.poster_path}`}
               alt="Poster Movie"
             />
-          </a>
+          </Link>
         ))}
       </div>
     </div>
