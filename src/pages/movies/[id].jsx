@@ -2,7 +2,7 @@ import { useMovieDetailsData } from "@/api/useMoviesData";
 import { imgUrl } from "@/lib/axios";
 import { useRouter } from "next/router";
 
-export default function MovieDetails() {
+export default function MoviePage() {
   const router = useRouter();
   const { id } = router.query;
   const { detailsMovie, creditsMovie } = useMovieDetailsData(id);

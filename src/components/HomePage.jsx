@@ -12,7 +12,6 @@ export default function HomePage() {
   const { creditsMovie, detailsMovie } = useMovieDetailsData(topMovie?.id);
 
   console.log(topRatedMovies);
-  console.log(topRatedSeries);
   console.log(creditsMovie);
   console.log(detailsMovie);
 
