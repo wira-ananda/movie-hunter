@@ -12,6 +12,6 @@ export const HeadMetaData = () => {
         name="description"
         content="Tempat dimana semua karya nyata terpampang"
       />
-    </Hea>
+    </Head>
   );
 };
