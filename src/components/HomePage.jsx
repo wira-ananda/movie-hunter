@@ -16,7 +16,7 @@ export default function HomePage() {
   console.log(detailsMovie);
 
   return (
-    <div className="w-full h-full">
+    <main className="w-full h-full">
       {topMovie ? (
         <div
           className="w-full h-full bg-cover bg-center"
@@ -26,25 +26,23 @@ export default function HomePage() {
         >
           <div className="w-[90%] h-full flex mx-auto ">
             <div className="z-40 space-y-[1rem] my-auto">
-              <div>
+              <section>
                 <h1 className="font-semibold text-[5rem] flex space-x-[1.5rem]">
                   {topMovie?.title}
                 </h1>
                 <h1>{topMovie?.overview}</h1>
-              </div>
+              </section>
               <button className="px-[1.5rem] py-[.2rem] bg-black rounded-md text-[1rem]">
                 Play
               </button>
-              <div>
-                <div>
-                  <Thumbnail title="Top Movies" data={popularMovies} />
-                  <Thumbnail title="Top Rated Movies" data={topRatedMovies} />
-                </div>
-              </div>
+              <section>
+                <Thumbnail title="Top Movies" data={popularMovies} />
+                <Thumbnail title="Top Rated Movies" data={topRatedMovies} />
+              </section>
             </div>
           </div>
         </div>
       ) : null}
-    </div>
+    </main>
   );
 }

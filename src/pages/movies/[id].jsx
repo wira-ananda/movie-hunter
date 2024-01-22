@@ -14,7 +14,7 @@ export default function MoviePage() {
   ));
 
   return (
-    <div>
+    <main>
       {detailsMovie &&
       detailsMovie.poster_path &&
       detailsMovie.backdrop_path &&
@@ -55,6 +55,6 @@ export default function MoviePage() {
           </div>
         </div>
       ) : null}
-    </div>
+    </main>
   );
 }
