@@ -5,11 +5,11 @@ export default function Home() {
   return (
     <>
       <HeadMetaData />
-      <main>
-        <section className="w-[100vw] h-[100vh]">
+      <header>
+        <main className="w-[100vw] h-[100vh]">
           <HomePage />
-        </section>
-      </main>
+        </main>
+      </header>
     </>
   );
 }

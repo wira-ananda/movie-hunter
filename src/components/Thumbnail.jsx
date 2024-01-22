@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function Thumbnail({ data, title }) {
   return (
-    <main>
+    <article>
       <h1 className="font-bold text-[2rem]">{title}</h1>
-      <section className="flex space-x-[.5rem] overflow-x-auto">
+      <div className="flex space-x-[.5rem] overflow-x-auto">
         {data?.map((thumbnail) => (
           <Link
             className="w-[9rem] sm:w-[10.5rem] md:w-[12rem]"
@@ -19,7 +19,7 @@ export default function Thumbnail({ data, title }) {
             />
           </Link>
         ))}
-      </section>
-    </main>
+      </div>
+    </article>
   );
 }

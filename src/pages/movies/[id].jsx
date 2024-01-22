@@ -28,7 +28,7 @@ export default function MoviePage() {
         >
           <div className="w-[90%] h-full flex mx-auto ">
             <div className="z-40 w-[60%] space-y-[1rem] my-auto">
-              <div className="flex gap-[1rem]">
+              <section className="flex gap-[1rem]">
                 <img
                   className="w-[15rem] rounded-lg"
                   src={`${imgUrl}${detailsMovie?.poster_path}`}
@@ -40,17 +40,17 @@ export default function MoviePage() {
                   </h1>
                   <p>{detailsMovie?.overview}</p>
                 </div>
-              </div>
-              <div className="">
+              </section>
+              <section className="">
                 <h1 className="font-semibold">Cast </h1>
                 <div className="flex space-x-[1rem]">{castMovie}</div>
-              </div>
-              <div className="">
+              </section>
+              <section className="">
                 <h1 className="font-semibold">Release Date </h1>
                 <div className="flex space-x-[1rem]">
                   {detailsMovie?.release_date}
                 </div>
-              </div>
+              </section>
             </div>
           </div>
         </div>

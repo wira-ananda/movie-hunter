@@ -16,7 +16,7 @@ export default function HomePage() {
   console.log(detailsMovie);
 
   return (
-    <main className="w-full h-full">
+    <section className="w-full h-full">
       {topMovie ? (
         <div
           className="w-full h-full bg-cover bg-center"
@@ -43,6 +43,6 @@ export default function HomePage() {
           </div>
         </div>
       ) : null}
-    </main>
+    </section>
   );
 }
